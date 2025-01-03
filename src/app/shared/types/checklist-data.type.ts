@@ -5,6 +5,7 @@ export type ChecklistData = {
   description: string;
   setLimitDate: boolean;
   setColor: boolean;
+  setMessage?: boolean,
   limitDate: Date | null;
   backgroundColor: string;
   borderShadowColor: string;
