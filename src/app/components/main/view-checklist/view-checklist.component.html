@@ -1,0 +1,36 @@
+<h1 class="font-extrabold text-3xl my-3 text-center">{{ checklist?.name }}</h1>
+<h4 class="italic text-xl text-center">{{ checklist?.category }}</h4>
+
+<div AutoTextColor class="bg-gray-100 rounded-lg p-8 sm:w-3/6 w-5/6 mt-5 h-72 overflow-auto flex flex-col justify-between border" [style.backgroundColor]="checklist?.backgroundColor" [style.boxShadow]="'10px 10px' + checklist?.borderShadowColor">
+  <p [style.color]="checklist?.textColor" class="text-center"><span class="font-bold text-inherit">Descrição:&nbsp;</span>{{ checklist?.description }}</p>
+  @if (checklist?.setMessage) {
+    <div class="w-full flex items-end flex-col mt-6 sm:mb-1 mb-4">
+      <span [style.color]="checklist?.textColor" class="sm:w-5/12 w-10/12 block text-end text-sm">"{{ motivMessage?.frase }}"</span>
+      <span [style.color]="checklist?.textColor" class="italic block text-end text-xs">- {{ motivMessage?.autor }}</span>
+    </div>
+  }
+  @if (checklist?.setLimitDate) {
+    <p [style.color]="checklist?.textColor" class="text-end"><span class="font-bold text-inherit">Data limite:&nbsp;</span>{{ checklist?.limitDate | date: 'dd/MM/yyyy' }}</p>
+  }
+</div>
+
+<form class="max-w-full xl:w-7/12 w-11/12 mt-12 flex flex-col justify-center items-center" [formGroup]="checklistForm">
+  <section formArrayName="checklistItems" class="w-full bg-gray-100 rounded-lg mt-6 max-h-72 overflow-auto" cdkDropList (cdkDropListDropped)="drop($event)">
+    @for (item of items.controls; track $index) {
+      <div class="flex sm:gap-3 gap-0 items-center pt-2 px-3 checklist-lines" [formGroupName]="$index" cdkDrag>
+        <mat-checkbox formControlName="checked"></mat-checkbox>
+        <input formControlName="label" placeholder="Acompanhe suas tarefas aqui!" class="bg-transparent w-11/12 px-3" style="height: 44px;" [title]="item.getRawValue().label"/>
+        <mat-icon title="Arrastar" class="cursor-grab active:cursor-grabbing transition hover:text-blue-500">drag_indicator</mat-icon>
+        <mat-icon title="Remover linha" class="cursor-pointer transition hover:text-red-500" (click)="removeItem($index)">close</mat-icon>
+      </div>
+    }
+    <div class="w-full flex justify-end py-3 pr-3">
+      <mat-icon title="Adicionar nova linha" class="cursor-pointer transition bg-sky-500 text-white hover:text-blue-500 hover:bg-gray-200 rounded-full" (click)="addItem()">add</mat-icon>
+    </div>
+  </section>
+</form>
+
+<div class="flex gap-5">
+  <button mat-raised-button (click)="return()" class="mt-3">Voltar</button>
+  <button mat-flat-button (click)="saveChecklist()" class="mt-3">Salvar</button>
+</div>

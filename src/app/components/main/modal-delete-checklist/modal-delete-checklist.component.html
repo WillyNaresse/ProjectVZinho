@@ -1,0 +1,15 @@
+<div class="w-full flex justify-end p-5">
+  <mat-icon [mat-dialog-close]="false" class="cursor-pointer">close</mat-icon>
+</div>
+
+
+<mat-dialog-content>
+  <div class="w-full flex justify-center mb-4">
+    <mat-icon [mat-dialog-close]="false">warning</mat-icon>
+  </div>
+  <p class="text-center">Tem certeza que deseja excluir a checklist {{ data.item.name }}?</p>
+</mat-dialog-content>
+<div class="flex justify-center p-5 gap-2 bg-gray-100">
+  <button mat-raised-button type="button" class="w-6/12" [mat-dialog-close]="false">Não</button>
+  <button mat-raised-button class="w-6/12" [mat-dialog-close]="true" color="warn">Sim</button>
+</div>

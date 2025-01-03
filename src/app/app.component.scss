@@ -1,0 +1,15 @@
+::ng-deep {
+  .mat-mdc-checkbox-checked .mdc-checkbox__background {
+      background-color: #3ca5fc !important;
+      border-color: #333333 !important;
+   }
+   .mat-mdc-form-field-required-marker {
+    color: red !important;
+  }
+  .mat-mdc-unelevated-button {
+    background-color: #3ca5fc !important;
+    .mdc-button__label {
+      color: white !important;
+    }
+  }
+}

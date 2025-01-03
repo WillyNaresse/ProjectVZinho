@@ -1,0 +1,120 @@
+<main class="h-screen flex">
+  <section class="lg:w-8/12 bg-gray-100 lg:flex hidden flex-col justify-center items-center">
+    <img src="assets/images/Logo.png" alt="Logo Vzinho" title="Vzinho" class="w-5/12">
+    <h1>Vzinho - O seu app de checklists</h1>
+  </section>
+
+  <section class="lg:w-4/12 w-full bg-sky-300 xl:px-12 flex flex-col justify-center px-6">
+    <h1 class="text-center font-bold sm:text-4xl text-3xl">CADASTRO</h1>
+
+    <p class="text-center sm:my-6 my-3 text-sm sm:text-base">Já possui uma conta? <a routerLink="/" routerLinkActive="router-link-active"  class="text-blue-700 cursor-pointer hover:underline">Clique para entrar</a>.</p>
+
+    <form class="flex flex-col sm:mt-6 mt-3" [formGroup]="signupForm" (ngSubmit)="signup()">
+      <div class="flex flex-col">
+        <mat-form-field class="w-full">
+          <mat-label>Nome</mat-label>
+          <input matInput placeholder="Insira seu primeiro nome" type="text" formControlName="name">
+          <mat-icon matPrefix>person</mat-icon>
+          @if (signupForm.controls['name'].hasError('required')) {
+            <mat-error>Insira o seu nome.</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+          <mat-label>E-mail</mat-label>
+          <input matInput placeholder="Insira seu e-mail" type="email" formControlName="email">
+          <mat-icon matPrefix>email</mat-icon>
+          @if (signupForm.controls['email'].hasError('invalidEmail')) {
+            <mat-error>Insira um e-mail válido.</mat-error>
+          }
+          @if (signupForm.controls['email'].hasError('required')) {
+            <mat-error>Insira seu e-mail.</mat-error>
+          }
+        </mat-form-field>
+
+        <div class="flex justify-between gap-3">
+          <mat-form-field class="w-6/12">
+            <mat-label>Data de nascimento</mat-label>
+            <input matInput placeholder="Insira sua data de nascimento" [matDatepicker]="dp" formControlName="birthDate" readonly="true" [min]="minDate" [max]="maxDate">
+            <mat-datepicker-toggle matIconPrefix [for]="dp"></mat-datepicker-toggle>
+            <mat-datepicker #dp></mat-datepicker>
+            @if (signupForm.controls['birthDate'].hasError('required')) {
+              <mat-error>Insira sua data de nasc.</mat-error>
+            }
+          </mat-form-field>
+
+          <mat-form-field class="w-6/12">
+            <mat-label>CEP</mat-label>
+            <input matInput placeholder="Insira seu CEP" type="text" formControlName="cep" mask="00000-000" (change)="loadAddressData()">
+            <mat-icon matPrefix>map</mat-icon>
+          </mat-form-field>
+        </div>
+
+        <div class="flex justify-between gap-2">
+
+          <mat-form-field class="w-4/12">
+            <mat-label>Estado</mat-label>
+            <input matInput placeholder="Insira seu Estado" type="text" formControlName="uf" mask="SS">
+            <mat-icon matPrefix>public</mat-icon>
+          </mat-form-field>
+
+          <mat-form-field class="w-8/12">
+            <mat-label>Cidade</mat-label>
+            <input matInput placeholder="Insira sua cidade" type="text" formControlName="city">
+            <mat-icon matPrefix>location_city</mat-icon>
+          </mat-form-field>
+        </div>
+
+        <div class="flex justify-between gap-3">
+          <mat-form-field class="w-6/12">
+            <mat-label>Endereço</mat-label>
+            <input matInput placeholder="Insira seu endereço" type="text" formControlName="address">
+            <mat-icon matPrefix>home</mat-icon>
+          </mat-form-field>
+
+          <mat-form-field class="w-6/12">
+            <mat-label>Número</mat-label>
+            <input matInput placeholder="Insira seu número residencial" type="text" formControlName="addressNumber" mask="0999">
+            <mat-icon matPrefix>window</mat-icon>
+          </mat-form-field>
+        </div>
+
+        <div class="flex justify-between gap-3 relative">
+          <mat-form-field class="w-6/12">
+            <mat-label>Senha</mat-label>
+            <input matInput placeholder="Insira sua senha" type="password" formControlName="password">
+            <mat-icon matPrefix>lock</mat-icon>
+          </mat-form-field>
+
+          <mat-form-field class="w-6/12">
+            <mat-label>Confirme a senha</mat-label>
+            <input matInput placeholder="Insira sua confirmação de senha" type="password" formControlName="passwordConfirm">
+            <mat-icon matPrefix>lock</mat-icon>
+          </mat-form-field>
+          @if (signupForm.controls['password'].hasError('invalidPassword') || signupForm.controls['password'].hasError('minLength')) {
+            <mat-error class="text-xs absolute bottom-0">A senha falta caracteres.
+              <mat-icon matTooltip="A senha deve conter no mínimo 8 caracteres com ao menos uma letra maiúscula, uma letra minúscula, um número e um caractere especial." class="cursor-pointer text-sm" style="overflow: visible !important;">info</mat-icon>
+            </mat-error>
+          }
+          @if (signupForm.controls['password'].hasError('required') && signupForm.controls['password'].touched) {
+            <mat-error class="text-xs absolute bottom-0 left-4">Insira sua senha.</mat-error>
+          }
+        </div>
+
+        <div class="flex">
+          <mat-checkbox formControlName="dataAgreement" color="primary"></mat-checkbox>
+          <span class="text-xs mt-2">Eu concordo com os <a (click)="openModalTermsOfUse()" class="text-blue-700 cursor-pointer">Termos de Uso e Política de Privacidade</a> e autorizo o tratamento dos meus dados pessoais conforme descrito.<span class="text-red-500">*</span>
+        </span>
+      </div>
+      @if (signupForm.controls['dataAgreement'].hasError('required') && signupForm.controls['dataAgreement'].touched) {
+        <mat-error class="text-xs ps-10">É obrigatório marcar esta opção para realizar o cadastro.</mat-error>
+      }
+      </div>
+
+      <button mat-raised-button class="m-4">Realizar cadastro</button>
+    </form>
+
+  </section>
+</main>
+
+<app-loading></app-loading>

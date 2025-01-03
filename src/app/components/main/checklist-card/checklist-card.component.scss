@@ -1,0 +1,17 @@
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 320px;
+}
+
+mat-card {
+  border: 1px solid #e7e7e7 !important;
+  &:hover {
+    filter: contrast(.85);
+  }
+
+  mat-card-actions {
+    align-items: start !important;
+  }
+}

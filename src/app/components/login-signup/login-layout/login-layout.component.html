@@ -1,0 +1,94 @@
+<main class="h-screen flex">
+  <section
+    class="lg:w-8/12 bg-gray-100 lg:flex hidden flex-col justify-center items-center"
+  >
+    <img
+      src="assets/images/Logo.png"
+      alt="Logo Vzinho"
+      title="Vzinho"
+      class="w-5/12"
+    />
+    <h1>Vzinho - O seu app de checklists</h1>
+  </section>
+
+  <section
+    class="lg:w-4/12 w-full bg-sky-300 sm:px-12 flex flex-col justify-center px-8"
+  >
+    <div class="lg:hidden flex flex-col items-center mb-6">
+      <img
+        src="assets/images/Logo.png"
+        alt="Logo Vzinho"
+        title="Vzinho"
+        class="sm:w-5/12 w-8/12"
+      />
+    </div>
+
+    <h1 class="text-center font-bold sm:text-4xl text-3xl">LOGIN</h1>
+
+    <p class="text-center my-6 text-sm sm:text-base">
+      Não possui uma conta?
+      <a
+        routerLink="signup"
+        class="text-blue-700 cursor-pointer hover:underline"
+        >Registre-se aqui</a
+      >.
+    </p>
+
+    <form class="flex flex-col mt-6" [formGroup]="loginForm" (ngSubmit)="login()">
+      <div class="flex flex-col">
+        <mat-form-field class="mb-2">
+          <mat-label>E-mail</mat-label>
+          <input
+            matInput
+            placeholder="Insira seu e-mail"
+            type="email"
+            formControlName="email"
+          />
+          <mat-icon matPrefix>email</mat-icon>
+          @if (loginForm.controls['email'].hasError('invalidEmail')) {
+          <mat-error>Por favor, insira um e-mail válido.</mat-error>
+          } @if (loginForm.controls['email'].hasError('required')) {
+          <mat-error>Por favor, insira um e-mail.</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Senha</mat-label>
+          <input
+            matInput
+            placeholder="Insira sua senha"
+            type="password"
+            formControlName="password"
+          />
+          <mat-icon matPrefix>lock</mat-icon>
+          @if (loginForm.controls['password'].hasError('invalidPassword') ||
+          loginForm.controls['password'].hasError('minLength')) {
+          <mat-error
+            >A senha falta caracteres.
+            <mat-icon
+              class="cursor-pointer"
+              matTooltip="A senha deve conter no mínimo 8 caracteres com ao menos uma letra maiúscula, uma letra minúscula, um número e um caractere especial."
+              >info</mat-icon
+            >
+          </mat-error>
+          } @if (loginForm.controls['password'].hasError('required')) {
+          <mat-error>Por favor, insira sua senha.</mat-error>
+          }
+        </mat-form-field>
+        <a
+          class="text-blue-700 cursor-pointer text-end hover:underline sm:mt-0 mt-4"
+          (click)="openModalForgotPassword()"
+          >Esqueci minha senha</a
+        >
+
+        <mat-checkbox formControlName="rememberMe" color="primary"
+          >Lembrar-me</mat-checkbox
+        >
+      </div>
+
+      <button mat-raised-button class="m-4">Entrar</button>
+    </form>
+  </section>
+</main>
+
+<app-loading></app-loading>

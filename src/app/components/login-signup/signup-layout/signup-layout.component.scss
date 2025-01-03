@@ -1,0 +1,7 @@
+::ng-deep {
+  @media only screen and (max-width: 385px) {
+    .mat-mdc-form-field-error-wrapper {
+      padding: 0 !important;
+    }
+  }
+}

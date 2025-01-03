@@ -1,0 +1,19 @@
+:host {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+::ng-deep {
+  @media only screen and (max-width: 415px) {
+    .mat-mdc-form-field-error-wrapper {
+      padding: 0 !important;
+    }
+  }
+}
+
+.checklist-lines input::placeholder {
+  text-align: center;
+}
+

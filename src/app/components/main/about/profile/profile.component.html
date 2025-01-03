@@ -1,0 +1,43 @@
+<h1 class="font-extrabold text-3xl my-5 text-center">Minha Conta</h1>
+
+<section class="max-w-full w-fit mt-5 h-[70vh] flex flex-col justify-center items-center gap-4">
+  <div class="w-full flex justify-end mb-4">
+    <button mat-flat-button><a routerLink="edit" class="flex items-center gap-2"><mat-icon class="text-white">edit</mat-icon>Editar</a></button>
+  </div>
+
+  <div class="w-full flex items-center gap-8">
+    <div class="rounded-full w-[85px] aspect-square">
+      <img src="assets/images/no-user.png" alt="">
+    </div>
+
+    <div>
+      <p class="text-lg font-bold">{{ userData?.name }}</p>
+      <p class="italic">{{ userData?.email }}</p>
+    </div>
+  </div>
+
+  <div class="w-full flex justify-between rounded-lg bg-blue-100 p-3">
+    <div><span class="font-bold">Data de Nascimento: </span>{{ userData?.birthDate | date: 'dd/MM/yyyy' }}</div>
+    @if (userData?.cep) {
+      <div><span class="font-bold">CEP: </span>{{ userData?.cep| mask: '00000-000' }}</div>
+    }
+  </div>
+
+  @if (userData?.uf && userData?.city && userData?.address) {
+    <div class="w-full flex justify-between items-center rounded-lg bg-blue-100 p-3">
+      <div><span class="font-bold">Estado: </span>{{ userData?.uf }}</div>
+      <div><span class="font-bold">Cidade: </span>{{ userData?.city }}</div>
+    </div>
+
+    <div class="w-full flex justify-between items-center rounded-lg bg-blue-100 p-3">
+      <div><span class="font-bold">Endereço: </span>{{ userData?.address }}</div>
+      @if (userData?.addressNumber) {
+        <div><span class="font-bold">Nº: </span>{{ userData?.addressNumber }}</div>
+      }
+    </div>
+  }
+
+  <button mat-raised-button class="mt-6" (click)="return()">Voltar</button>
+</section>
+
+<app-loading></app-loading>

@@ -1,0 +1,16 @@
+<h1 class="font-extrabold text-3xl my-5 text-center">Minhas Checklists</h1>
+
+<section class="max-w-full w-fit mt-5 h-[70vh] flex flex-col justify-center items-center">
+  <div class="w-full flex justify-end">
+    <a routerLink="new"><button mat-flat-button class="mb-5"><mat-icon class="text-white">add</mat-icon>Nova checklist</button></a>
+  </div>
+  @if (checklists?.length === 0) {
+    <p class="mt-12 text-center">Você não possui checklists no momento. Tente criar uma!</p>
+  } @else {
+    <div class="flex gap-6 flex-wrap justify-center w-fit max-h-full overflow-auto py-10 px-3">
+      @for (item of checklists; track $index) {
+        <app-checklist-card [item]="item" [index]="$index" />
+      }
+    </div>
+  }
+</section>
