@@ -1,71 +1,124 @@
 <h1 class="font-extrabold text-3xl my-5 text-center">Editar Conta</h1>
 
-<section class="max-w-full w-fit mt-5 h-[70vh] flex flex-col justify-center items-center gap-4">
-
-  <form class="flex flex-col sm:mt-6 mt-3" [formGroup]="userDataForm" (ngSubmit)="editUserData()">
-    <div class="flex flex-col">
-      <div class="flex justify-between gap-2">
+<section
+  class="sm:w-fit w-[98vw] mt-5 h-[70vh] flex flex-col justify-center items-center gap-4 px-4"
+>
+  <form
+    class="flex flex-col sm:mt-6 mt-3 w-full items-center"
+    [formGroup]="userDataForm"
+    (ngSubmit)="editUserData()"
+  >
+    <div class="flex flex-col w-full">
+      <div class="flex justify-between sm:gap-2 gap-0 w-full">
         <mat-form-field class="w-full">
           <mat-label>Nome</mat-label>
-          <input matInput placeholder="Insira seu primeiro nome" type="text" formControlName="name">
+          <input
+            matInput
+            placeholder="Insira seu primeiro nome"
+            type="text"
+            formControlName="name"
+          />
           <mat-icon matPrefix>person</mat-icon>
           @if (userDataForm.controls['name'].hasError('required')) {
-            <mat-error>Insira o seu nome.</mat-error>
+          <mat-error>Insira o seu nome.</mat-error>
           }
         </mat-form-field>
       </div>
 
-      <div class="flex justify-between gap-3">
-        <mat-form-field class="w-6/12">
+      <div class="flex justify-between sm:gap-3 gap-0 sm:flex-row flex-col">
+        <mat-form-field class="sm:w-6/12 w-full">
           <mat-label>Data de nascimento</mat-label>
-          <input matInput placeholder="Insira sua data de nascimento" [matDatepicker]="dp" formControlName="birthDate" readonly="true" [min]="minDate" [max]="maxDate">
-          <mat-datepicker-toggle matIconPrefix [for]="dp"></mat-datepicker-toggle>
+          <input
+            matInput
+            placeholder="Insira sua data de nascimento"
+            [matDatepicker]="dp"
+            formControlName="birthDate"
+            readonly="true"
+            [min]="minDate"
+            [max]="maxDate"
+          />
+          <mat-datepicker-toggle
+            matIconPrefix
+            [for]="dp"
+          ></mat-datepicker-toggle>
           <mat-datepicker #dp></mat-datepicker>
           @if (userDataForm.controls['birthDate'].hasError('required')) {
-            <mat-error>Insira sua data de nasc.</mat-error>
+          <mat-error>Insira sua data de nasc.</mat-error>
           }
         </mat-form-field>
 
-        <mat-form-field class="w-6/12">
+        <mat-form-field class="sm:w-6/12 w-full">
           <mat-label>CEP</mat-label>
-          <input matInput placeholder="Insira seu CEP" type="text" formControlName="cep" mask="00000-000" (change)="loadAddressData()">
+          <input
+            matInput
+            placeholder="Insira seu CEP"
+            type="text"
+            formControlName="cep"
+            mask="00000-000"
+            (change)="loadAddressData()"
+          />
           <mat-icon matPrefix>map</mat-icon>
         </mat-form-field>
       </div>
 
-      <div class="flex justify-between gap-2">
-
-        <mat-form-field class="w-4/12">
+      <div class="flex justify-between sm:gap-2 gap-0 sm:flex-row flex-col">
+        <mat-form-field class="sm:w-4/12 w-full">
           <mat-label>Estado</mat-label>
-          <input matInput placeholder="Insira seu Estado" type="text" formControlName="uf" mask="SS">
+          <input
+            matInput
+            placeholder="Insira seu Estado"
+            type="text"
+            formControlName="uf"
+            mask="SS"
+          />
           <mat-icon matPrefix>public</mat-icon>
         </mat-form-field>
 
-        <mat-form-field class="w-8/12">
+        <mat-form-field class="sm:w-8/12 w-full">
           <mat-label>Cidade</mat-label>
-          <input matInput placeholder="Insira sua cidade" type="text" formControlName="city">
+          <input
+            matInput
+            placeholder="Insira sua cidade"
+            type="text"
+            formControlName="city"
+          />
           <mat-icon matPrefix>location_city</mat-icon>
         </mat-form-field>
       </div>
 
-      <div class="flex justify-between gap-3">
-        <mat-form-field class="w-6/12">
+      <div class="flex justify-between sm:gap-3 gap-0 sm:flex-row flex-col">
+        <mat-form-field class="sm:w-6/12 w-full">
           <mat-label>Endereço</mat-label>
-          <input matInput placeholder="Insira seu endereço" type="text" formControlName="address">
+          <input
+            matInput
+            placeholder="Insira seu endereço"
+            type="text"
+            formControlName="address"
+          />
           <mat-icon matPrefix>home</mat-icon>
         </mat-form-field>
 
-        <mat-form-field class="w-6/12">
+        <mat-form-field class="sm:w-6/12 w-full">
           <mat-label>Número</mat-label>
-          <input matInput placeholder="Insira seu número residencial" type="text" formControlName="addressNumber" mask="0999">
+          <input
+            matInput
+            placeholder="Insira seu número residencial"
+            type="text"
+            formControlName="addressNumber"
+            mask="0999"
+          />
           <mat-icon matPrefix>window</mat-icon>
         </mat-form-field>
       </div>
     </div>
 
     <div class="flex my-4 w-full gap-3">
-      <button mat-raised-button type="button" class="w-4/12" (click)="return()">Voltar</button>
-      <button mat-flat-button type="submit" class="w-8/12">Confirmar Edição</button>
+      <button mat-raised-button type="button" class="w-4/12" (click)="return()">
+        Voltar
+      </button>
+      <button mat-flat-button type="submit" class="w-8/12">
+        Confirmar Edição
+      </button>
     </div>
   </form>
 </section>
