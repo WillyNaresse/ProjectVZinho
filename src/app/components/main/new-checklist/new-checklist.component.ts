@@ -14,11 +14,12 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { ChecklistService } from '../../../services/checklist/checklist.service';
 import { LoadingService } from '../../../services/loading/loading.service';
 import { finalize } from 'rxjs';
+import { ClickableTooltipDirective } from '../../../shared/directives/clickable-tooltip/clickable-tooltip.directive';
 
 @Component({
   selector: 'app-new-checklist',
   standalone: true,
-  imports: [MatIconModule, MatTooltipModule, MatButtonModule, MatInputModule, MatCheckboxModule, MatDatepickerModule, CdkDropList, CdkDrag, CdkDragHandle, MatNativeDateModule, ReactiveFormsModule],
+  imports: [ClickableTooltipDirective, MatIconModule, MatTooltipModule, MatButtonModule, MatInputModule, MatCheckboxModule, MatDatepickerModule, CdkDropList, CdkDrag, CdkDragHandle, MatNativeDateModule, ReactiveFormsModule],
   templateUrl: './new-checklist.component.html',
   styleUrl: './new-checklist.component.scss',
   providers: [

@@ -33,6 +33,7 @@
       <mat-checkbox class="mt-2" formControlName="setLimitDate" (change)="resetValues('setLimitDate')">Incluir data limite</mat-checkbox>
       <div class="ml-2">
         <mat-icon
+          clickableTooltip
           class="cursor-pointer mt-4"
           matTooltip="Caso uma data seja definida e a opção de cores personalizadas não seja marcada, as cores dos cards irão mudar baseado na proximidade da data atual com a data limite."
           >info</mat-icon>
@@ -53,6 +54,7 @@
       <mat-checkbox class="mt-2" formControlName="setColor" (change)="resetValues('setColor')">Incluir cor personalizada</mat-checkbox>
       <div class="ml-2">
         <mat-icon
+          clickableTooltip
           class="cursor-pointer mt-4"
           matTooltip="Caso uma data seja definida e a opção de cores personalizadas não seja marcada, as cores dos cards irão mudar baseado na proximidade da data atual com a data limite."
           >info</mat-icon>
@@ -84,6 +86,7 @@
       <mat-checkbox class="mt-2" formControlName="setMessage">Incluir mensagem motivacional</mat-checkbox>
       <div class="ml-2">
         <mat-icon
+          clickableTooltip
           class="cursor-pointer mt-4"
           matTooltip="Quer se inspirar e se motivar enquanto realiza seus objetivos? Tente marcar esta opção!"
           >info</mat-icon>

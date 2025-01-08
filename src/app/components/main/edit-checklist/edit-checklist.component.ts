@@ -12,11 +12,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ChecklistService } from '../../../services/checklist/checklist.service';
 import { ChecklistData } from '../../../shared/types/checklist-data.type';
+import { ClickableTooltipDirective } from '../../../shared/directives/clickable-tooltip/clickable-tooltip.directive';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-edit-checklist',
   standalone: true,
-  imports: [MatIconModule, MatButtonModule, MatInputModule, MatCheckboxModule, MatDatepickerModule, CdkDropList, CdkDrag, CdkDragHandle, MatNativeDateModule, ReactiveFormsModule],
+  imports: [ClickableTooltipDirective, MatTooltipModule, MatIconModule, MatButtonModule, MatInputModule, MatCheckboxModule, MatDatepickerModule, CdkDropList, CdkDrag, CdkDragHandle, MatNativeDateModule, ReactiveFormsModule],
   templateUrl: './edit-checklist.component.html',
   styleUrl: './edit-checklist.component.scss',
   providers: [
