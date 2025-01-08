@@ -4,7 +4,9 @@
 <div AutoTextColor class="bg-gray-100 rounded-lg p-8 sm:w-3/6 w-5/6 mt-5 h-72 overflow-auto flex flex-col justify-between border" [style.backgroundColor]="checklist?.backgroundColor" [style.boxShadow]="'10px 10px' + checklist?.borderShadowColor">
   <p [style.color]="checklist?.textColor" class="text-center"><span class="font-bold text-inherit">Descrição:&nbsp;</span>{{ checklist?.description }}</p>
   @if (checklist?.setMessage) {
-    <div class="w-full flex items-end flex-col mt-6 sm:mb-1 mb-4">
+    <div class="w-full flex items-end flex-col mt-6 sm:mb-1 mb-4 relative">
+      <svg class="absolute left-[55%] transition hover:drop-shadow-md" width="50px" height="50px" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" stroke=""><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M7 10.4142L2.70711 14.7071L1.29289 13.2929L5 9.58579V9L1 9V2H7V10.4142Z" fill="#f5f5f5" fill-opacity="0.4"></path> <path d="M9 9L13 9V9.58579L9.29289 13.2929L10.7071 14.7071L15 10.4142L15 2H9L9 9Z" fill="#f5f5f5" fill-opacity="0.4"></path> </g></svg>
+
       <span [style.color]="checklist?.textColor" class="sm:w-5/12 w-10/12 block text-end text-sm">"{{ motivMessage?.frase }}"</span>
       <span [style.color]="checklist?.textColor" class="italic block text-end text-xs">- {{ motivMessage?.autor }}</span>
     </div>
@@ -19,13 +21,15 @@
     @for (item of items.controls; track $index) {
       <div class="flex sm:gap-3 gap-0 items-center pt-2 px-3 checklist-lines" [formGroupName]="$index" cdkDrag>
         <mat-checkbox formControlName="checked"></mat-checkbox>
-        <input formControlName="label" placeholder="Acompanhe suas tarefas aqui!" class="bg-transparent w-11/12 px-3" style="height: 44px;" [title]="item.getRawValue().label"/>
-        <mat-icon title="Arrastar" class="cursor-grab active:cursor-grabbing transition hover:text-blue-500">drag_indicator</mat-icon>
-        <mat-icon title="Remover linha" class="cursor-pointer transition hover:text-red-500" (click)="removeItem($index)">close</mat-icon>
+        <input formControlName="label" placeholder="Acompanhe suas tarefas aqui!" class="bg-transparent w-11/12 px-3" style="height: 44px;" [title]="item.getRawValue().label" [class]="item.get('checked')?.value ? 'line-through text-gray-500' : ''" />
+        <div class="flex sm:gap-0 gap-1">
+          <mat-icon title="Arrastar" class="cursor-grab active:cursor-grabbing transition hover:text-blue-500" cdkDragHandle>drag_indicator</mat-icon>
+          <mat-icon title="Remover linha" class="cursor-pointer transition hover:text-red-500" (click)="removeItem($index)">close</mat-icon>
+        </div>
       </div>
     }
     <div class="w-full flex justify-end py-3 pr-3">
-      <mat-icon title="Adicionar nova linha" class="cursor-pointer transition bg-sky-500 text-white hover:text-blue-500 hover:bg-gray-200 rounded-full" (click)="addItem()">add</mat-icon>
+      <mat-icon title="Adicionar nova linha" class="cursor-pointer transition bg-sky-500 text-white hover:text-blue-500 hover:bg-gray-200 rounded-full add-item" (click)="addItem()">add</mat-icon>
     </div>
   </section>
 </form>

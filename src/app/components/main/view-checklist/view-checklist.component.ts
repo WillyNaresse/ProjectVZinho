@@ -1,4 +1,4 @@
-import { CdkDrag, CdkDragDrop, CdkDropList, moveItemInArray } from '@angular/cdk/drag-drop';
+import { CdkDrag, CdkDragDrop, CdkDragHandle, CdkDropList, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Location } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormArray, FormBuilder, ReactiveFormsModule } from '@angular/forms';
@@ -24,7 +24,7 @@ interface Message {
 @Component({
   selector: 'app-view-checklist',
   standalone: true,
-  imports: [DatePipe, MatIconModule, MatButtonModule, MatInputModule, MatCheckboxModule, MatDatepickerModule, CdkDropList, CdkDrag, MatNativeDateModule, ReactiveFormsModule],
+  imports: [DatePipe, MatIconModule, MatButtonModule, MatInputModule, MatCheckboxModule, MatDatepickerModule, CdkDropList, CdkDrag, CdkDragHandle, MatNativeDateModule, ReactiveFormsModule],
   templateUrl: './view-checklist.component.html',
   styleUrl: './view-checklist.component.scss',
 })

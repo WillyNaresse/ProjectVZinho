@@ -8,3 +8,17 @@
 .checklist-lines input::placeholder {
   text-align: center;
 }
+
+.add-item {
+  animation: pulse 1000ms infinite;
+}
+
+@keyframes pulse {
+  0% {
+   box-shadow: 0 0 0 0 #0EA5E9;
+  }
+
+  100% {
+   box-shadow: 0 0 0 10px rgba(128, 128, 128, 0.1);
+  }
+ }

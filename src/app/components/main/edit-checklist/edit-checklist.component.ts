@@ -1,4 +1,4 @@
-import { CdkDropList, CdkDrag, CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { CdkDropList, CdkDrag, CdkDragDrop, moveItemInArray, CdkDragHandle } from '@angular/cdk/drag-drop';
 import { Location } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators, FormArray, FormBuilder } from '@angular/forms';
@@ -16,7 +16,7 @@ import { ChecklistData } from '../../../shared/types/checklist-data.type';
 @Component({
   selector: 'app-edit-checklist',
   standalone: true,
-  imports: [MatIconModule, MatButtonModule, MatInputModule, MatCheckboxModule, MatDatepickerModule, CdkDropList, CdkDrag, MatNativeDateModule, ReactiveFormsModule],
+  imports: [MatIconModule, MatButtonModule, MatInputModule, MatCheckboxModule, MatDatepickerModule, CdkDropList, CdkDrag, CdkDragHandle, MatNativeDateModule, ReactiveFormsModule],
   templateUrl: './edit-checklist.component.html',
   styleUrl: './edit-checklist.component.scss',
   providers: [

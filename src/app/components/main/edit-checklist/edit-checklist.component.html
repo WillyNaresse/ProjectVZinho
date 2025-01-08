@@ -95,13 +95,15 @@
     @for (item of items.controls; track $index) {
       <div class="flex sm:gap-3 gap-0 items-center pt-2 px-3 checklist-lines" [formGroupName]="$index" cdkDrag>
         <mat-checkbox formControlName="checked"></mat-checkbox>
-        <input formControlName="label" placeholder="Acompanhe suas tarefas aqui!" class="bg-transparent w-11/12 px-3" style="height: 44px;" [title]="item.getRawValue().label"/>
-        <mat-icon title="Arrastar" class="cursor-grab active:cursor-grabbing transition hover:text-blue-500">drag_indicator</mat-icon>
-        <mat-icon title="Remover linha" class="cursor-pointer transition hover:text-red-500" (click)="removeItem($index)">close</mat-icon>
+        <input formControlName="label" placeholder="Acompanhe suas tarefas aqui!" class="bg-transparent w-11/12 px-3" style="height: 44px;" [title]="item.getRawValue().label"  [class]="item.get('checked')?.value ? 'line-through text-gray-500' : ''" />
+        <div class="flex sm:gap-0 gap-1">
+          <mat-icon title="Arrastar" class="cursor-grab active:cursor-grabbing transition hover:text-blue-500" cdkDragHandle>drag_indicator</mat-icon>
+          <mat-icon title="Remover linha" class="cursor-pointer transition hover:text-red-500" (click)="removeItem($index)">close</mat-icon>
+        </div>
       </div>
     }
     <div class="w-full flex justify-end py-3 pr-3">
-      <mat-icon title="Adicionar nova linha" class="cursor-pointer transition bg-sky-500 text-white hover:text-blue-500 hover:bg-gray-200 rounded-full" (click)="addItem()">add</mat-icon>
+      <mat-icon title="Adicionar nova linha" class="cursor-pointer transition bg-sky-500 text-white hover:text-blue-500 hover:bg-gray-200 rounded-full add-item" (click)="addItem()">add</mat-icon>
     </div>
   </section>
 </form>
